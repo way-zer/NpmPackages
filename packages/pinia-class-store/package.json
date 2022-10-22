@@ -2,18 +2,16 @@
   "name": "pinia-class-store",
   "version": "1.0.0",
   "description": "Class style store for pinia",
-  "scripts": {
-    "build": "vite build"
-  },
+  "author": "wayzer",
+  "license": "MIT",
+  "repository": "https://github.com/way-zer/NpmPackages/tree/master/packages/pinia-class-store",
+  "type": "module",
   "keywords": [
     "pinia",
     "vue",
     "class",
     "store"
   ],
-  "author": "wayzer",
-  "license": "MIT",
-  "type": "module",
   "files": [
     "dist",
     "src"
@@ -26,6 +24,9 @@
       "import": "./dist/pinia-class-store.js",
       "require": "./dist/pinia-class-store.cjs"
     }
+  },
+  "scripts": {
+    "build": "vite build"
   },
   "devDependencies": {
     "pinia": "^2.0.23",
