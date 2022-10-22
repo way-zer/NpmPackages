@@ -1,0 +1,40 @@
+{
+  "name": "pinia-class-store",
+  "version": "1.0.0",
+  "description": "Class style store for pinia",
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "pinia",
+    "vue",
+    "class",
+    "store"
+  ],
+  "author": "wayzer",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "module": "./dist/pinia-class-store.js",
+  "main": "./dist/pinia-class-store.cjs",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/pinia-class-store.js",
+      "require": "./dist/pinia-class-store.cjs"
+    }
+  },
+  "devDependencies": {
+    "pinia": "^2.0.23",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.8",
+    "vitest": "^0.24.3",
+    "vue": "^3.2.41"
+  },
+  "peerDependencies": {
+    "pinia": "^2.0.23"
+  }
+}
