@@ -12,12 +12,21 @@ interface ModuleExt {
     }
 }
 
+//magic, see https://github.com/Microsoft/TypeScript/issues/27024
+type Magic<X> = (<T>() => T extends X ? 1 : 2)
+type Magic2<X> = (<T>() => T extends X ? 1 : 2)
+
 type Actions<T extends Record<string, any>> = {
     [P in keyof T as T[P] extends (...args: any[]) => any ? P : never]: T[P];
 };
-//we can't distinguish state and getter, so see getter as state for type
-type StateAndGetter<T extends Record<string, any>> = Omit<T, keyof Actions<T>>;
-type PiniaStore<G extends Record<string, any>> = Store<string, StateAndGetter<G>, {}, Actions<G>>
+type Getters<T extends Record<string, any>> = {
+    [P in keyof T as Magic<Pick<T, P>> extends Magic2<Readonly<Pick<T, P>>> ? P : never]: T[P];
+};
+type States<T extends Record<string, any>> = Omit<{
+    [P in keyof T as Magic<Pick<T, P>> extends Magic2<Readonly<Pick<T, P>>> ? never : P]: T[P];
+}, keyof Actions<T>>;
+
+type PiniaStore<G extends Record<string, any>> = Store<string, States<G>, Getters<G>, Actions<G>>
 
 /**
  * @param Module0 类名
