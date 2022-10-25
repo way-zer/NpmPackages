@@ -22,15 +22,15 @@ type StateAndGetter<T extends Record<string, any>> = Omit<T, keyof Actions<T>>;
  * @param Module0 类名
  * @param id Store的id,可选，默认使用类名
  */
-export function useStore<T extends (new (...args) => any), G extends InstanceType<T> = InstanceType<T>>(Module0: T, id?: string)
+export function useStore<T extends (new () => any), G extends InstanceType<T> = InstanceType<T>>(Module0: T, id?: string)
     : G & Store<string, StateAndGetter<G>, {}, Actions<G>> {
     const Module = Module0 as T & ModuleExt
     id = id || Module.name
     if (!Module._storeOptions) {
         const option = {
-            initialState: {},
-            getters: {},
-            actions: {}
+            initialState: {} as any,
+            getters: {} as any,
+            actions: {} as any,
         }
         const instance = new Module()
         for (const key of Object.keys(instance)) {
@@ -40,7 +40,7 @@ export function useStore<T extends (new (...args) => any), G extends InstanceTyp
         for (const key of Object.getOwnPropertyNames(Module.prototype)) {
             const descriptor = Object.getOwnPropertyDescriptor(Module.prototype, key)!!
             if (descriptor.get) {
-                option.getters[key] = (state) => descriptor.get!!.call(state)
+                option.getters[key] = (state: G) => descriptor.get!!.call(state)
             }
             if (descriptor.value) {
                 option.actions[key] = Module.prototype[key]

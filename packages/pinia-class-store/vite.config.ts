@@ -7,7 +7,7 @@ export default defineConfig({
             formats: ["es", 'cjs'],
         },
         rollupOptions: {
-            external: [/node_modules.*/]
+            external: ['pinia']
         }
     }
 })

@@ -1,11 +1,15 @@
 {
   "include": [
-    "src/**"
+    "src"
   ],
   "compilerOptions": {
+    "outDir": "dist",
     "strict": true,
     "lib": [
       "esnext"
-    ]
+    ],
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "skipLibCheck": true
   }
 }

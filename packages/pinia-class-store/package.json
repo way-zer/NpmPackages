@@ -1,6 +1,6 @@
 {
   "name": "pinia-class-store",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Class style store for pinia",
   "author": "wayzer",
   "license": "MIT",
@@ -13,12 +13,11 @@
     "store"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "module": "./dist/pinia-class-store.js",
   "main": "./dist/pinia-class-store.cjs",
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/pinia-class-store.js",
@@ -26,7 +25,8 @@
     }
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build && pnpm run type",
+    "type": "tsc"
   },
   "devDependencies": {
     "pinia": "^2.0.23",
