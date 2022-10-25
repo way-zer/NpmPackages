@@ -1,5 +1,5 @@
 import {assert, beforeAll, test} from "vitest";
-import {useStore} from "../src";
+import {asPiniaStore, useStore} from "../src";
 import {createPinia, setActivePinia} from "pinia";
 
 class TestStore {
@@ -7,6 +7,10 @@ class TestStore {
 
     get helloMe() {
         return this.hello + " me"
+    }
+
+    get piniaStoreId() {
+        return asPiniaStore(this).$id
     }
 
     changeHello() {
@@ -40,4 +44,14 @@ test('async action works', async () => {
     store.hello = ""
     await store.asyncHello()
     assert.equal(store.helloMe, "hello me")
+})
+test('pinia extra exists', async () => {
+    const store = useStore(TestStore)
+    assert.isDefined(store.$state.hello)
+    assert.isDefined(store.$onAction)
+    assert.isDefined(store.$patch)
+})
+test('asPiniaStore works', async () => {
+    const store = useStore(TestStore)
+    assert.equal(store.piniaStoreId, TestStore.name)
 })

@@ -1,6 +1,6 @@
 {
   "name": "pinia-class-store",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Class style store for pinia",
   "author": "wayzer",
   "license": "MIT",
@@ -26,7 +26,8 @@
   },
   "scripts": {
     "build": "vite build && pnpm run type",
-    "type": "tsc"
+    "type": "tsc",
+    "test": "vitest"
   },
   "devDependencies": {
     "pinia": "^2.0.23",

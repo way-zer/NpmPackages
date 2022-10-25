@@ -17,13 +17,14 @@ type Actions<T extends Record<string, any>> = {
 };
 //we can't distinguish state and getter, so see getter as state for type
 type StateAndGetter<T extends Record<string, any>> = Omit<T, keyof Actions<T>>;
+type PiniaStore<G extends Record<string, any>> = Store<string, StateAndGetter<G>, {}, Actions<G>>
 
 /**
  * @param Module0 类名
  * @param id Store的id,可选，默认使用类名
  */
 export function useStore<T extends (new () => any), G extends InstanceType<T> = InstanceType<T>>(Module0: T, id?: string)
-    : G & Store<string, StateAndGetter<G>, {}, Actions<G>> {
+    : G & Omit<PiniaStore<G>, keyof G> {
     const Module = Module0 as T & ModuleExt
     id = id || Module.name
     if (!Module._storeOptions) {
@@ -56,4 +57,13 @@ export function useStore<T extends (new () => any), G extends InstanceType<T> = 
     })()
     Object.setPrototypeOf(store, Module.prototype)
     return store as G
+}
+
+/**
+ * convert pinia class module as PiniaStore
+ * @module should be this
+ */
+export function asPiniaStore<Module extends Record<any, any>>(module: Module): PiniaStore<Module> {
+    if (!(module as PiniaStore<Module>).$id) throw new Error("This is not a pinia class module")
+    return module as PiniaStore<Module>
 }
