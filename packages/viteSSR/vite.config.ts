@@ -13,8 +13,8 @@ export default defineConfig({
             input: {
                 index: 'src/index.ts',
                 plugin: 'src/plugin.ts',
-                entryClient: 'src/entry-client.ts',
-                entryServer: 'src/entry-server.ts',
+                "entry-client": 'src/entry-client.ts',
+                "entry-server": 'src/entry-server.ts',
                 prodHandler: 'src/prodHandler.ts',
             },
             output: [

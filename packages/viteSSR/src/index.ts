@@ -1,6 +1,7 @@
 import {UniSSRHandler} from "./types";
 
-declare let viteSSR: UniSSRHandler
+// @ts-ignore
+declare let viteSSR: UniSSRHandler = undefined
 export default viteSSR
 
 throw "You should use vite plugin"

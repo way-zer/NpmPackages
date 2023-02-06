@@ -46,20 +46,19 @@ function createSSRHandler(config: Config, server: ViteDevServer): Connect.NextHa
     }
 }
 
-export default function viteSSR(config: Config = defaultConfig) {
-    return [
-        {
-            name: 'viteSSR', enforce: 'pre',
-            async configureServer(server) {
-                const handler = createSSRHandler(config, server)
-                return () => {
-                    server.middlewares.use(handler)
-                }
-            },
-            resolveId(id, importer, option) {
-                if (id.endsWith("simple-vite-vue-ssr"))
-                    return this.resolve(option.ssr ? (id + "/entry-server") : (id + "/entry-client"), importer, option)
+export default function viteSSR(config: Config = defaultConfig): Plugin {
+    return {
+        name: 'viteSSR', enforce: 'pre',
+        async configureServer(server) {
+            const handler = createSSRHandler(config, server)
+            return () => {
+                server.middlewares.use(handler)
             }
-        } as Plugin
-    ]
+        },
+        async resolveId(id, _, {ssr}) {
+            if (!id.endsWith("simple-vite-vue-ssr")) return
+            const resolution = await this.resolve(ssr ? (id + "/entry-server") : (id + "/entry-client"))
+            return resolution
+        }
+    }
 }
