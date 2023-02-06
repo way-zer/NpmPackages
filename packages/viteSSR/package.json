@@ -1,6 +1,6 @@
 {
   "name": "simple-vite-vue-ssr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "SSR util with vite and vue, with single entry and simple state",
   "author": "wayzer",
   "license": "MIT",
@@ -21,23 +21,28 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./entry-client": {
       "import": "./dist/entry-client.js",
-      "require": "./dist/entry-client.cjs"
+      "require": "./dist/entry-client.cjs",
+      "types": "./dist/entry-client.d.ts"
     },
     "./entry-server": {
       "import": "./dist/entry-server.js",
-      "require": "./dist/entry-server.cjs"
+      "require": "./dist/entry-server.cjs",
+      "types": "./dist/entry-server.d.ts"
     },
     "./plugin": {
       "import": "./dist/plugin.js",
-      "require": "./dist/plugin.cjs"
+      "require": "./dist/plugin.cjs",
+      "types": "./dist/plugin.d.ts"
     },
     "./prodHandler": {
       "import": "./dist/prodHandler.js",
-      "require": "./dist/prodHandler.cjs"
+      "require": "./dist/prodHandler.cjs",
+      "types": "./dist/prodHandler.d.ts"
     }
   },
   "scripts": {
