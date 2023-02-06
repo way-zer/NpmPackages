@@ -25,14 +25,14 @@
     }
   },
   "scripts": {
-    "build": "vite build && pnpm run type",
-    "type": "tsc",
+    "build": "vite build",
     "test": "vitest"
   },
   "devDependencies": {
     "pinia": "^2.0.23",
     "typescript": "^4.8.4",
     "vite": "^3.1.8",
+    "vite-plugin-dts": "^1.7.2",
     "vitest": "^0.24.3",
     "vue": "^3.2.41"
   },

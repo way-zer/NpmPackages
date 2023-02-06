@@ -7,7 +7,7 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext",
     "lib": [
-      "esnext"
+      "esnext", "dom"
     ],
     "emitDeclarationOnly": true,
     "declaration": true,

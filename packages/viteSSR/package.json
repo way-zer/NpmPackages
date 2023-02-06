@@ -1,0 +1,58 @@
+{
+  "name": "simple-vite-vue-ssr",
+  "version": "1.0.0",
+  "description": "SSR util with vite and vue, with single entry and simple state",
+  "author": "wayzer",
+  "license": "MIT",
+  "repository": "https://github.com/way-zer/NpmPackages/tree/master/packages/viteSSR",
+  "type": "module",
+  "keywords": [
+    "vite",
+    "plugin",
+    "ssr",
+    "vue"
+  ],
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./entry-client": {
+      "import": "./dist/entry-client.js",
+      "require": "./dist/entry-client.cjs"
+    },
+    "./entry-server": {
+      "import": "./dist/entry-server.js",
+      "require": "./dist/entry-server.cjs"
+    },
+    "./plugin": {
+      "import": "./dist/plugin.js",
+      "require": "./dist/plugin.cjs"
+    },
+    "./prodHandler": {
+      "import": "./dist/prodHandler.js",
+      "require": "./dist/prodHandler.cjs"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4",
+    "vite": "^3.1.8",
+    "vite-plugin-dts": "^1.7.2",
+    "vue-router": "^4.1.6",
+    "vue": "^3.2.41",
+    "@types/node": "^18.11.18"
+  },
+  "peerDependencies": {
+    "vite": "^3.1.8",
+    "vue": "^3.2.41"
+  }
+}
