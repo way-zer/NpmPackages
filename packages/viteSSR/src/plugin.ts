@@ -57,7 +57,7 @@ export default function viteSSR(config: Config = defaultConfig): Plugin[] {
                 }
             },
             resolveId(id, _, {ssr}) {
-                if (id.endsWith("viteSSR"))
+                if (id.endsWith("simple-vite-vue-ssr"))
                     return ssr ? (id + "/entry-server.ts") : (id + "/entry-client.ts")
             }
         } as Plugin
