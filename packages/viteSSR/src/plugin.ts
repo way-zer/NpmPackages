@@ -46,7 +46,7 @@ function createSSRHandler(config: Config, server: ViteDevServer): Connect.NextHa
     }
 }
 
-export default function viteSSR(config: Config = defaultConfig): Plugin[] {
+export default function viteSSR(config: Config = defaultConfig) {
     return [
         {
             name: 'viteSSR', enforce: 'pre',
@@ -56,9 +56,9 @@ export default function viteSSR(config: Config = defaultConfig): Plugin[] {
                     server.middlewares.use(handler)
                 }
             },
-            resolveId(id, _, {ssr}) {
+            resolveId(id, importer, option) {
                 if (id.endsWith("simple-vite-vue-ssr"))
-                    return ssr ? (id + "/entry-server.ts") : (id + "/entry-client.ts")
+                    return this.resolve(option.ssr ? (id + "/entry-server") : (id + "/entry-client"), importer, option)
             }
         } as Plugin
     ]
