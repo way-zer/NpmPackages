@@ -1,7 +1,6 @@
 import {UniSSRHandler} from "./types";
+import viteSSRClient from "./entry-client.js";
 
-// @ts-ignore
-declare let viteSSR: UniSSRHandler = undefined
+console.warn("You are using viteSSR without plugin.")
+const viteSSR: UniSSRHandler = viteSSRClient
 export default viteSSR
-
-throw "You should use vite plugin"
