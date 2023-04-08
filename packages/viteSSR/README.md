@@ -31,19 +31,19 @@ import viteSSR from "@/util/viteSSR";
 import createRouter from "@/plugins/router";
 import {createPinia} from "pinia";
 
-export default viteSSR(App, async ({app, state, kind}) => {
+export default viteSSR(App, async (ctx) => {
+    //you must provide router
+    ctx.router = createRouter()
+    
     //use any state store you like
     const pinia = createPinia()
-    app.use(pinia)
-    if (kind == 'server') {
+    ctx.app.use(pinia)
+    if (ctx.kind == 'server') {
         //pass state to client
-        state.pinia = pinia.state.value
-    } else if (kind == 'client') {
+        ctx.state.pinia = pinia.state.value
+    } else if (ctx.kind == 'client') {
         //read state from SSR rendered
-        pinia.state.value = state.pinia
-    }
-    return {
-        router: createRouter(),
+        pinia.state.value = ctx.state.pinia
     }
 })
 ```

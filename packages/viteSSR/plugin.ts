@@ -1,6 +1,6 @@
 import {Connect, Plugin, ViteDevServer} from "vite";
-import {Renderer, ServerContext} from "./types";
-import {injectTemplate} from "./util";
+import {Renderer, ServerContext} from "./src/types";
+import {injectTemplate} from "./src/util";
 import {resolve} from "path";
 import {readFileSync} from "fs";
 
@@ -57,7 +57,7 @@ export default function viteSSR(config: Config = defaultConfig): Plugin {
         },
         async resolveId(id, _, {ssr}) {
             if (!id.endsWith("simple-vite-vue-ssr")) return
-            const resolution = await this.resolve(ssr ? (id + "/entry-server") : (id + "/entry-client"))
+            const resolution = await this.resolve(ssr ? (id + "/entry-server") : (id + "/entry-client"))!!
             return resolution
         }
     }

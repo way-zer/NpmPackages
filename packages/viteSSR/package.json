@@ -1,6 +1,6 @@
 {
   "name": "simple-vite-vue-ssr",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SSR util with vite and vue, with single entry and simple state",
   "author": "wayzer",
   "license": "MIT",

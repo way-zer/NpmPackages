@@ -24,7 +24,8 @@ function createContext(app: Component) {
 
 const viteSSR: ClientSSRHandler = async function (App, hook) {
     const context = createContext(App)
-    const {router} = await hook(context)
+    await hook(context)
+    const router = context.router
     context.app.use(router)
     await router.isReady()
     context.app.mount('#app', context.kind == "client")

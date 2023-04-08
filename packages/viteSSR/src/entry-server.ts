@@ -7,12 +7,17 @@ const viteSSR: ServerSSRHandler = function (App, hook) {
     return async function (url, context) {
         const app = createSSRApp(App)
         context.app = app
-        const {router, afterRender} = await hook(context)
+
+        await hook(context)
+
+        const router = context.router
+        if (!router) throw "You must init context.router"
         app.use(router)
         await router.push(url)
         await router.isReady()
+
         const body = await renderToString(app, context)
-        afterRender && await afterRender()
+        context.afterRender && await context.afterRender()
         return {
             status: router.currentRoute.value.name == '404' ? 404 : 200,
             htmlParts: {

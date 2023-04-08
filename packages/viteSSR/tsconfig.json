@@ -1,6 +1,11 @@
 {
   "include": [
+    "*.ts",
     "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "vite.config.ts"
   ],
   "compilerOptions": {
     "strict": true,

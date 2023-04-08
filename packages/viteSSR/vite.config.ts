@@ -11,11 +11,11 @@ export default defineConfig({
         rollupOptions: {
             external: ['vue', 'vue-router', 'vite', 'connect', 'path', 'fs'],
             input: {
-                index: 'src/index.ts',
-                plugin: 'src/plugin.ts',
+                index: 'index.ts',
+                plugin: 'plugin.ts',
+                prodHandler: 'prodHandler.ts',
                 "entry-client": 'src/entry-client.ts',
                 "entry-server": 'src/entry-server.ts',
-                prodHandler: 'src/prodHandler.ts',
             },
             output: [
                 {

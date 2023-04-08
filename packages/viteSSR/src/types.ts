@@ -4,21 +4,17 @@ import type {Router} from "vue-router";
 export interface SharedContext {
     app: App
     state: SSRState | Record<string, undefined>
-}
-
-export interface Options {
     router: Router
-    afterRender?: () => void | Promise<void>
 }
 
 export interface SSRState {
     [key: string]: any
 }
 
-
 export interface ServerContext extends SharedContext {
     kind: 'server'
     state: SSRState
+    afterRender?: () => void | Promise<void>
 
     ssrManifest?: Record<string, string[]>
     modules?: string[]
@@ -36,7 +32,7 @@ export interface NoSSRContext extends SharedContext {
 }
 
 export type UniContext = ClientContext | NoSSRContext | ServerContext
-export type Hook<Context extends SharedContext> = (ctx: Context) => Promise<Options>
+export type Hook<Context extends SharedContext> = (ctx: Context) => Promise<void>
 export type Renderer = (url: string | URL, context: ServerContext) => Promise<{
     status: number,
     htmlParts: Record<string, string>,
