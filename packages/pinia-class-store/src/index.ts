@@ -61,7 +61,7 @@ export function useStore<T extends (new () => any), G extends InstanceType<T> = 
 
     const {initialState, getters, actions} = Module._storeOptions
     const store = defineStore(id, {
-        state: () => initialState,
+        state: () => ({...initialState}),
         getters, actions
     })()
     Object.setPrototypeOf(store, Module.prototype)
